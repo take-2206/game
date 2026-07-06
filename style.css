@@ -11,6 +11,7 @@ body{
     background-position:center;
     background-repeat:no-repeat;
     height:100vh;
+    height:100dvh; /* FIX: tránh lệch layout do thanh địa chỉ Safari trên iPhone */
     touch-action: none; /* FIX: chặn kéo/zoom trên mobile khi chơi */
     
 }
@@ -19,6 +20,7 @@ body{
 #startScreen{
     width:100vw;
     height:100vh;
+    height:100dvh; /* FIX iPhone Safari */
    
     position:relative;
 }
@@ -61,6 +63,7 @@ body{
 #game{
     width:100vw;
     height:100vh;
+    height:100dvh; /* FIX iPhone Safari */
     position:relative;
     overflow:hidden;
     background-image:url("IMAGE/bg.png");
@@ -135,6 +138,7 @@ body{
     width:max-content;
     min-width:100vw;
     height:100vh;
+    height:100dvh; /* FIX iPhone Safari */
     will-change:transform;
 }
 
@@ -259,6 +263,7 @@ body{
 
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* FIX iPhone Safari */
 
     background: rgba(0, 0, 0, 0.322);
    
