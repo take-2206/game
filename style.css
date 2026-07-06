@@ -1,0 +1,518 @@
+@font-face{
+    font-family: Pixel;
+    src: url("font/pixelFont-7-8x14-sproutLands.ttf")
+}
+
+body{
+      margin:0;
+    overflow:hidden;
+    background-image:url("IMAGE/bg.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    height:100vh;
+    touch-action: none; /* FIX: chặn kéo/zoom trên mobile khi chơi */
+    
+}
+
+/* Màn hình Start */
+#startScreen{
+    width:100vw;
+    height:100vh;
+   
+    position:relative;
+}
+
+#startScreen h1{
+    font-family: Pixel;
+    font-size: 100px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FEDEC9;
+    position: relative;
+    top: 25%;
+}
+
+#startBtn{
+    width:250px;
+    cursor:pointer;
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:10;
+}
+
+#rule{
+    position:absolute;
+    top:50%;
+    left:20%;
+    width: 714px;
+    height: 372px;
+    
+}
+
+#startBtn:hover{
+    transform:translate(-50%,-50%) scale(1.1);
+}
+
+/* Game */
+#game{
+    width:100vw;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+    background-image:url("IMAGE/bg.png");
+    background-size:cover;
+    background-position:center;
+    display:none;
+}
+
+/* UI */
+#ui{
+    position:absolute;
+    top:20px;
+    left:20px;
+    color:#FFD1C9;
+    font-size:30px;
+    z-index:100;
+    display:flex;
+    gap:50px;
+    font-family: Pixel;
+}
+
+.coin-item{
+    position: absolute;
+    width:64px;
+    height: 64px;
+}
+
+.coin-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.star-item{
+    position: absolute;
+    width:64px;
+    height: 64px;
+}
+
+.star-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.coin, .time, .life{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* FIX: cảnh báo khi thời gian còn dưới 5 giây */
+.time-warning{
+    color: #ff3b3b;
+    animation: blinkWarning 0.5s step-start infinite;
+}
+
+@keyframes blinkWarning{
+    50%{ opacity: 0.25; }
+}
+
+
+
+.time img,
+.life img{
+    width:40px;
+}
+
+/* Map */
+#world{
+    position:relative;
+    width:max-content;
+    min-width:100vw;
+    height:100vh;
+    will-change:transform;
+}
+
+#player{
+    position:absolute;
+    width:100px;
+    height:100px;
+   
+    z-index:5;
+   
+}
+
+#player img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.platform{
+    position:absolute;
+   width: 64px;
+   height: 64px;
+
+    background-image:url("IMAGE/platforms.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+
+
+.ground{
+    position:absolute;
+    bottom:0;
+    width: 999999px;
+    height:100px;
+    background-image: url("IMAGE/groud.png");
+}
+
+.enemy{
+    position:absolute;
+    width:48px;
+    height:48px;
+}
+
+.enemy img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+#lives{
+    position:absolute;
+    top:20px;
+    right:20px;
+    display:flex;
+    gap:8px;
+    z-index:100;
+}
+
+.heart{
+    width:60px;
+    height:60px;
+}
+
+/* ----------------------------------------------------------------
+   MOBILE CONTROLS
+   Chỉ hiện trên thiết bị cảm ứng (không hiện trên desktop dùng chuột)
+---------------------------------------------------------------- */
+#mobileControls{
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 200;
+    pointer-events: none;
+}
+
+#dpad{
+    display: flex;
+    gap: 18px;
+    pointer-events: none;
+}
+
+.ctrlBtn{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    border: 2px solid rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #fff;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+    pointer-events: auto;
+}
+
+.ctrlBtn:active{
+    background: rgba(255,255,255,0.5);
+    transform: scale(0.92);
+}
+
+/* Chỉ bật hiển thị khi thiết bị dùng cảm ứng làm input chính */
+@media (hover: none) and (pointer: coarse){
+    #mobileControls{
+        display: flex;
+    }
+}
+
+#gameOverScreen{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.322);
+   
+
+    display: none; /* QUAN TRỌNG */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Pixel;
+    color: #E8CFA6;
+
+    z-index: 9999;
+}
+
+#gameOverScreen h1{
+    font-size: 80px;
+    color: #D6BDDA;
+}
+
+#restartBtn{
+    width: 220px;      /* tăng kích thước */
+    height: auto;
+
+    cursor: pointer;
+
+    image-rendering: pixelated;
+
+    transition: transform 0.15s;
+    background-color: transparent;
+    border: none;
+    margin-top: 20px;
+}
+
+#restartBtn:hover{
+    transform: scale(1.1);
+}
+
+#restartBtn:active{
+    transform: scale(0.95);
+}
+
+#finalScore{
+    font-size: 40px;
+}
+
+#bestScore{
+    font-size: 26px;
+    color: #FEDEC9;
+    margin-top: -10px;
+}
+
+#historyBox{
+    width: 320px;
+    max-height: 180px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+}
+
+#historyTitle{
+    font-size: 18px;
+    margin: 0 0 6px 0;
+    color: #D6BDDA;
+}
+
+#historyList{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+#historyList li{
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+#historyList li:last-child{
+    border-bottom: none;
+}
+
+.saw{
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+from{transform: rotate(0deg);}
+to{transform: rotate(360deg);}
+}
+
+/* ==================================================================
+   RESPONSIVE - MÀN HÌNH NHỎ / MOBILE (điện thoại, tablet dọc)
+   ================================================================== */
+@media (max-width: 700px){
+
+    /* Start screen */
+    #startScreen h1{
+        font-size: 48px;
+        top: 14%;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+    #startBtn{
+        width: 160px;
+        top: 46%;
+    }
+
+    #rule{
+        width: 82vw;
+        max-width: 360px;
+        height: auto;
+        left: 50%;
+        top: auto;
+        bottom: 6%;
+        transform: translateX(-50%);
+    }
+
+    /* HUD trong game */
+    #ui{
+        top: calc(12px + env(safe-area-inset-top));
+        left: calc(12px + env(safe-area-inset-left));
+        gap: 22px;
+        font-size: 18px;
+    }
+
+    .time img,
+    .life img{
+        width: 26px;
+    }
+
+    .coin img{
+        width: 26px;
+    }
+
+    #lives{
+        top: calc(12px + env(safe-area-inset-top));
+        right: calc(12px + env(safe-area-inset-right));
+        gap: 4px;
+    }
+
+    .heart{
+        width: 34px;
+        height: 34px;
+    }
+
+    /* Nhân vật nhỏ lại một chút cho vừa màn hình hẹp */
+    #player{
+        width: 72px;
+        height: 72px;
+    }
+
+    /* Nút điều khiển ảo */
+    #mobileControls{
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        padding: 0 20px;
+    }
+
+    .ctrlBtn{
+        width: 58px;
+        height: 58px;
+        font-size: 24px;
+    }
+
+    /* Game over screen */
+    #gameOverScreen h1{
+        font-size: 40px;
+    }
+
+    #finalScore{
+        font-size: 24px;
+    }
+
+    #bestScore{
+        font-size: 16px;
+    }
+
+    #historyBox{
+        width: 82vw;
+        max-width: 300px;
+        max-height: 140px;
+    }
+
+    #historyList{
+        font-size: 14px;
+    }
+
+    #restartBtn{
+        width: 160px;
+    }
+}
+
+/* Màn hình rất nhỏ (điện thoại nhỏ / kiểu iPhone SE) */
+@media (max-width: 380px){
+    #startScreen h1{
+        font-size: 36px;
+    }
+
+    #startBtn{
+        width: 130px;
+    }
+
+    #ui{
+        gap: 14px;
+        font-size: 16px;
+    }
+
+    #player{
+        width: 60px;
+        height: 60px;
+    }
+
+    .ctrlBtn{
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+/* Màn hình ngang (landscape) trên điện thoại - ưu tiên chiều cao thấp */
+@media (max-height: 420px) and (orientation: landscape){
+    #startScreen h1{
+        font-size: 36px;
+        top: 8%;
+    }
+
+    #startBtn{
+        width: 120px;
+        top: 40%;
+    }
+
+    #rule{
+        width: 50vw;
+        max-width: 300px;
+        bottom: 4%;
+    }
+
+    #player{
+        width: 64px;
+        height: 64px;
+    }
+
+    #mobileControls{
+        bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+
+    .ctrlBtn{
+        width: 50px;
+        height: 50px;
+    }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Adventure</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- START SCREEN -->
+    <div id="startScreen">
+
+        <h1>Coin Adventure</h1>
+
+        <img
+            id="startBtn"
+            src="IMAGE/play.png"
+            alt="Start"
+        >
+        <img id="rule" src="IMAGE/rule.png" alt="rule">
+
+    </div>
+
+    <!-- GAME -->
+    <div id="game">
+
+        <!-- UI -->
+        <div id="ui">
+
+            <div class="coin">
+                <img src="IMAGE/Coin.png" alt="coin">
+                <span id="score">0</span>
+            </div>
+
+            <div class="time">
+                <img src="IMAGE/clock.png" alt="time">
+                <span id="time">30</span>
+            </div>
+
+           
+
+        </div>
+
+        <div id="lives"></div>
+
+        <!-- WORLD -->
+        <div id="world">
+
+            <!-- GROUND -->
+            <div class="ground"></div>
+
+            <!-- PLAYER -->
+            <div id="player">
+                <img id="playerSprite" src="IMAGE/idle.png" alt="player">
+            </div>
+
+          
+          
+
+           
+
+        </div>
+
+        <!-- MOBILE CONTROLS -->
+        <div id="mobileControls">
+            <div id="dpad">
+                <div id="btnLeft" class="ctrlBtn">◀</div>
+                <div id="btnRight" class="ctrlBtn">▶</div>
+            </div>
+            <div id="btnJump" class="ctrlBtn">⤴</div>
+        </div>
+
+    </div>
+
+    <div id="gameOverScreen" style="display: none;">
+        <h1>GAME OVER</h1>
+        <p id="finalScore">Score :0</p>
+        <p id="bestScore">Best: 0</p>
+
+        <div id="historyBox">
+            
+            <ul id="historyList"></ul>
+        </div>
+
+        <button id="restartBtn">
+            <img src="IMAGE/restart.png" alt="restart">
+        </button>
+    </div>
+
+    <script src="game.js"></script>
+
+</body>
+</html>
